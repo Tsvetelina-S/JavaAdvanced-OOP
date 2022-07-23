@@ -1,29 +1,22 @@
 package Abstraction.TrafficLights;
 
-public enum TrafficLight {
-    RED("GREEN"),GREEN("YELLOW"),YELLOW("RED");
+public class TrafficLight {
 
-    private String value;
+    private Light light;
 
-    TrafficLight(String value) {
-        this.value = value;
+    public TrafficLight(Light light) {
+        this.light = light;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public static void changeLight(String lights, int n) {
-        if (n > 0) {
-            StringBuilder sb = new StringBuilder();
-            for (String input : lights.split("\\s+")) {
-                String newLight = TrafficLight.valueOf(input).getValue() + " ";
-                System.out.print(newLight);
-                sb.append(newLight);
-            }
-            n--;
-            System.out.println();
-            changeLight(sb.toString(), n);
+    public void changeLight() {
+        switch (light) {
+            case RED -> light = Light.GREEN;
+            case GREEN -> light = Light.YELLOW;
+            case YELLOW -> light = Light.RED;
         }
+    }
+
+    public Light getLight() {
+        return light;
     }
 }
